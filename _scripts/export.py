@@ -15,7 +15,19 @@ from odf.text import P
 
 def make_ods():
 
-    ods = load("text.ods")
+    result_file = load("../texts/text.ods")
+
+    android_file = load("../texts/text _android.ods")
+
+    # Loop to count all sheet (table)
+    for table in result_file.spreadsheet.getElementsByType(Table):
+        name = table.getAttribute('name')
+        print name
+
+
+
+    '''
+    # temporary rem
 
     col = Style(name='col', family='table-column')
     col.addElement(TableColumnProperties(columnwidth='1in'))
@@ -43,8 +55,9 @@ def make_ods():
             tc = TableCell()
             tc.addElement(P(text='%s%d' % (c, r)))
             tr.addElement(tc)
+    '''
 
-    assert isinstance(ods.save, object)
-    ods.save("text-merged-result.ods")
+    # assert isinstance(ods.save, object)
+    # ods.save("text-merged-result.ods")
 
 make_ods()
